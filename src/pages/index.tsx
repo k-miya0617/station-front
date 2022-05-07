@@ -19,6 +19,7 @@ const Home: NextPage = () => {
 
         <h1 className="text-3xl font-bold underline">Tailwind style test</h1>
         <h1 className="text-3xl text-amber-500">ディレクトリ移動完了</h1>
+        <h1 className="text-2xl">welcome to station-front</h1>
 
         <p className={styles.description}>
           Get started by editing{" "}
