@@ -1,3 +1,6 @@
+export const classNames = (...classes: string[]) =>
+  classes.filter(Boolean).join(" ");
+
 export const msToHMS = (ms: number | undefined): string => {
   if (ms === undefined) return "";
 
