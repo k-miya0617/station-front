@@ -30,6 +30,7 @@ export interface Track {
 // キーワードの該当するトラックのリストを取得する
 export const findKeyword = async (keyword: string) => {
   const response = await fetch(`${tracksUrl}FindKeyword?Keyword=${keyword}`);
+  if (response.status === 404) return undefined;
   const tracks = response.json();
   return tracks;
 };

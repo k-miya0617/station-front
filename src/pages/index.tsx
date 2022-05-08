@@ -1,19 +1,7 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import { findKeyword, Track } from "../api/tracks";
-import { msToHMS } from "../utils";
-
-const handlePress = () => {
-  (async () => {
-    await findKeyword("Perfume")
-      .then((_tracks) => {
-        console.log(_tracks);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  })();
-};
+import { dataLength, msToHMS } from "../utils";
 
 const Home: NextPage = () => {
   // 画面に表示させるトラックリスト
@@ -32,12 +20,13 @@ const Home: NextPage = () => {
         })
         .catch((e) => {
           setTrackList(null);
+          console.error(e);
         });
     })();
   };
 
   const Tbody = () => {
-    if (trackList === undefined) {
+    if (trackList === undefined || trackList?.length === 0) {
       return (
         <tbody>
           <tr>
@@ -61,18 +50,19 @@ const Home: NextPage = () => {
     }
     return (
       <tbody>
-        {trackList.map((track) => (
-          <tr>
-            <td>{track.album ?? ""}</td>
-            <td>{track.discCount ?? ""}</td>
-            <td>{track.trackCount ?? ""}</td>
-            <td>{track.name}</td>
-            {/* <td>{track.totalTimeMs}</td> */}
-            <td>{msToHMS(track.totalTimeMs ?? 0)}</td>
-            <td>{track.artist}</td>
-            <td>{track.sizeByte}</td>
-          </tr>
-        ))}
+        {trackList !== undefined &&
+          trackList !== null &&
+          trackList?.map((track) => (
+            <tr key={`${track.trackID}_tr`}>
+              <td>{track.album ?? ""}</td>
+              <td>{track.discCount ?? ""}</td>
+              <td>{track.trackCount ?? ""}</td>
+              <td>{track.name}</td>
+              <td>{msToHMS(track.totalTimeMs)}</td>
+              <td>{track.artist}</td>
+              <td>{dataLength(track.sizeByte)}</td>
+            </tr>
+          ))}
       </tbody>
     );
   };
