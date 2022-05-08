@@ -12,11 +12,8 @@ export const msToHMS = (ms: number): string => {
   const min = Math.floor(time / 60) % 60;
   const sec = Math.floor(time) % 60;
 
-  /*
   if (hour === 0) {
     return `${("00" + min).slice(-2)}:${("00" + sec).slice(-2)}`;
   }
   return `${hour}:${("00" + min).slice(-2)}:${("00" + sec).slice(-2)}`;
-  */
-  return `${hour}:${min}:${sec}`;
 };
