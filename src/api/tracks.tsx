@@ -1,3 +1,5 @@
+import path from "path";
+
 // 環境設定ファイルを読み込む ※github非公開
 const tracksUrl = "/api/Tracks/";
 
@@ -24,6 +26,19 @@ export interface Track {
   dateAdded?: Date | undefined;
   dateModified?: Date | undefined;
 }
+
+// 該当するトラックIDのファイルをDLする
+export const getTrack = async (trackID: number, location: string) => {
+  const fileName = path.basename(location);
+  await fetch(`${tracksUrl}${trackID}`)
+    .then((res) => res.blob())
+    .then((blob) => {
+      const anchor = document.createElement("a");
+      anchor.href = window.URL.createObjectURL(blob);
+      anchor.download = fileName;
+      anchor.click();
+    });
+};
 
 // キーワードの該当するトラックのリストを取得する
 export const findKeyword = async (keyword: string) => {
