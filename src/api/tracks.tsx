@@ -1,7 +1,5 @@
 // 環境設定ファイルを読み込む ※github非公開
-import { stationConfig } from "../../env";
-
-const tracksUrl = stationConfig.apiBaseURL + "Tracks/";
+const tracksUrl = "/api/Tracks/";
 
 export interface Track {
   trackID: number;
