@@ -1,4 +1,4 @@
-import { stationOption } from "./env.ts";
+const stationConfig = require("./env");
 
 const express = require("express");
 const next = require("next");
@@ -15,7 +15,7 @@ app.prepare().then(() => {
   server.use(
     "/api",
     createProxyMiddleware({
-      target: stationOption.apiBaseUrl,
+      target: stationConfig.apiBaseURL,
       pathRewrite: {
         "^/api": "",
       },
