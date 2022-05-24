@@ -3,8 +3,12 @@ import Layout from "../layout/layout";
 
 const Index: NextPage = () => {
   return (
-    <Layout>
-      <div>CONTENT</div>
+    <Layout track={{ trackID: 99999, name: "TEMP_NAME" }}>
+      <div>
+        {[...Array(50)].map((_, i) => (
+          <p key={`${i}_temp`}>TEMP_{i}</p>
+        ))}
+      </div>
     </Layout>
   );
 };
