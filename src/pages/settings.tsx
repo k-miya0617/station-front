@@ -1,14 +1,17 @@
 import type { NextPage } from "next";
 import Layout from "../layout/layout";
 
-const Index: NextPage = () => {
+const Settings: NextPage = () => {
   return (
     <Layout
-      track={{ trackID: 99999, name: "TEMP_NAME" }}
-      currentPageName="album"
+      track={{
+        trackID: 99999,
+        name: "LLONG_LONG_LONG_LONG_LONG_LONG_LONG_LONG_ONG_",
+      }}
+      currentPageName="settings"
     >
       <div>
-        INDEX(ALBUM)
+        SETTINGS
         {[...Array(50)].map((_, i) => (
           <p key={`${i}_temp`}>TEMP_{i}</p>
         ))}
@@ -17,4 +20,4 @@ const Index: NextPage = () => {
   );
 };
 
-export default Index;
+export default Settings;
